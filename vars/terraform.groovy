@@ -17,23 +17,34 @@ pipeline{
        stage('init'){
            steps{
                script{
-                //  withCredentials([file(credentialsId: 'gcloud-credentials' , variable: 'GCLOUD_CREDS')]){
                     sh "terraform init"
-                  //-backend-config=env-${Infra_env}/state.tfvars
-          // }
        }
      }
        }
        stage('apply/destroy'){
            steps{
                script{
-                 // withCredentials([file(credentialsId: 'gcloud-credentials' , variable: 'GCLOUD_CREDS')]){
                   sh "terraform ${params.Action} --auto-approve"
-                  //-var-file=env-${Infra_env}/main.tfvars"
-               //}
+                  
            }
        }
      }
+      
+//       or
+
+// stage('apply/destroy'){
+//            steps{
+//                script{
+//                   if (params.Action =="apply"){
+//                   sh "terraform apply --auto-approve"
+//                   } else {
+//                   sh "terraform destroy --auto-approve"
+//            }
+//                }
+//        }
+//      }
+
+
    }
 }
 
