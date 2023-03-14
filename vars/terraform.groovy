@@ -28,7 +28,7 @@ pipeline{
            steps{
                script{
                  // withCredentials([file(credentialsId: 'gcloud-credentials' , variable: 'GCLOUD_CREDS')]){
-                  sh "terraform ${Action} --auto-approve"
+                  sh "terraform ${params.Action} --auto-approve"
                   //-var-file=env-${Infra_env}/main.tfvars"
                //}
            }
