@@ -1,10 +1,10 @@
 def call(){
 pipeline{
    agent any
-//   parameters {
+  parameters {
 //            choice(name: 'Infra_env', choices: ['dev', 'prod'], description: 'Pick the env')
-//             choice(name: 'Action', choices: ['apply', 'destroy'], description: 'Pick the action')
-//         }
+            choice(name: 'Action', choices: ['apply', 'destroy'], description: 'Pick the action')
+         }
    options {
       ansiColor('xterm')
    }
@@ -28,7 +28,7 @@ pipeline{
            steps{
                script{
                  // withCredentials([file(credentialsId: 'gcloud-credentials' , variable: 'GCLOUD_CREDS')]){
-                  sh "terraform apply --auto-approve"
+                  sh "terraform ${Action} --auto-approve"
                   //-var-file=env-${Infra_env}/main.tfvars"
                //}
            }
